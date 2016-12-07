@@ -8,7 +8,7 @@ from burp import IResponseInfo
 import re
 # Class BurpExtender (Required) contaning all functions used to interact with Burp Suite API
 
-print 'stayliv3.github.io'
+print 'stayliv3.github.io update by HJoo for v1.7.11'
 
 class BurpExtender(IBurpExtender, IHttpListener):
 
@@ -56,8 +56,9 @@ class BurpExtender(IBurpExtender, IHttpListener):
                 # print body_string
                 u_char_escape = re.search( r'(?:\\u[\d\w]{4})+', body_string)
                 if u_char_escape:
-                    # print u_char_escape.group()
-                    u_char = u_char_escape.group().decode('unicode_escape').encode('utf8')
+                    #print u_char_escape.group()
+                    u_char = u_char_escape.group().decode('unicode_escape').encode('gbk')
+                    #print(u_char)
                     new_body_string = body_string.replace(u_char_escape.group(),'--u--'+u_char+'--u--')
                     new_body = self._helpers.bytesToString(new_body_string)
                     # print new_body_string
